@@ -82,8 +82,7 @@ namespace WebApplication1{
             }
         }
 
-        protected void Register_Click(object sender, EventArgs e)
-        {
+        protected void Register_Click(object sender, EventArgs e){
             string s_url;
             s_url = "Register.aspx";
             Response.Redirect(s_url);

@@ -80,11 +80,16 @@ namespace WebApplication1{
                         sqlCon.Open();
                         //执行查询，并将结果返回给读取器
                         int result = cmd2.ExecuteNonQuery();
-                        /*if (result == 1){
-                            Name.Text = "true";
+                        if (result == 1){
+                            Message.Text = "insert successfully and will return to login page";
+                            
                         }
-                        else Name.Text = "flase";*/
+                        else{
 
+                        }
+                        Response.Write("<script language='javascript'>setTimeout(\"{location.href='Login.aspx'}\",1500);</script>");
+                        //System.Threading.Thread.Sleep(3000);
+                        //Response.Redirect("Login.aspx");
                     }
                     catch (Exception ex) { }
                     finally
