@@ -38,6 +38,7 @@
                     <tr><td><asp:Label ID="Category" runat="server" Text=""></asp:Label></td></tr>
                     <tr><td><asp:Label ID="Brief" runat="server" Text=""></asp:Label></td></tr>
                     <tr><td><asp:Label ID="Link" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="Blank" runat="server" Text=" " Width="300px"></asp:Label>
                         <asp:ImageButton ID="ImageButton1" runat="server" Height="40px" ImageUrl="~/webimg/Link.jpg" OnClick="ImageButton1_Click" />
                         </td></tr>
 
