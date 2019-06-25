@@ -5,11 +5,64 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace WebApplication1{
     public partial class Register_ : System.Web.UI.Page{
-        protected void Page_Load(object sender, EventArgs e){
+        public string City_Text = "城市";
+        protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e){
+            BindCity();
+        }
 
+        void BindProvince(){
+            string CurrentPath = this.Server.MapPath(".");
+            if (System.IO.File.Exists(CurrentPath + "//Province.xml")){
+                this.ddlProvince.Items.Clear();
+                System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+                doc.Load(CurrentPath + "//Province.xml");
+                XmlNodeList nodes = doc.DocumentElement.ChildNodes;
+                XmlNode nodeCity = doc.DocumentElement.SelectSingleNode(@"Province/City[@Name='" + this.City_Text + "']");
+                foreach (XmlNode node in nodes){
+                    this.ddlProvince.Items.Add(node.Attributes["Name"].Value);
+                    int n = this.ddlProvince.Items.Count - 1;
+                    if (nodeCity != null && node == nodeCity.ParentNode)
+                        this.ddlProvince.SelectedIndex = n;
+                }
+                BindCity();
+            }
+            else { }
+        }
+
+        void BindCity(){
+            string CurrentPath = this.Server.MapPath(".");
+            if (System.IO.File.Exists(CurrentPath + "//Province.xml")){
+                this.ddlCity.Items.Clear();
+                System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+                doc.Load(CurrentPath + "//Province.xml");
+                XmlNodeList nodes = doc.DocumentElement.ChildNodes[this.ddlProvince.SelectedIndex].ChildNodes;
+                foreach (XmlNode node in nodes){
+                    this.ddlCity.Items.Add(node.Attributes["Name"].Value);
+                    int n = this.ddlCity.Items.Count - 1;
+                    if (node.Attributes["Name"].Value == this.City_Text)
+                    {
+                        this.ddlCity.SelectedIndex = n;
+                    }
+                }
+
+                if (this.ddlCity.SelectedIndex == -1)
+                    this.ddlCity.SelectedIndex = 0;
+            }
+            else
+            {
+
+            }
+
+        }
+
+        protected void Page_Load(object sender, EventArgs e){
+            if (!IsPostBack){
+                BindProvince();
+            }
         }
 
         protected void Register_Click(object sender, EventArgs e){
@@ -72,7 +125,7 @@ namespace WebApplication1{
                     number = (int.Parse(number) + 1).ToString();
                     //string sql ="insert into testinfo(name)values('"+ par+"')";
 
-                    String insert_data = "insert into user values ('" + number + "','" + PasswordText.Text + "','" + NameText.Text + "','" + EmailText.Text + "','" + CityText.Text + "')";
+                    String insert_data = "insert into user values ('" + number + "','" + PasswordText.Text + "','" + NameText.Text + "','" + EmailText.Text + "','" + ddlProvince.SelectedValue + ":" + ddlCity.SelectedValue + "')";
                     Message.Text = insert_data;
                     MySqlCommand cmd2 = new MySqlCommand(insert_data, sqlCon);
                     try{
@@ -87,9 +140,9 @@ namespace WebApplication1{
                         else{
 
                         }
+                        Response.Write("<script>alert('create account successfully');</script>");
                         Response.Write("<script language='javascript'>setTimeout(\"{location.href='Login.aspx'}\",1500);</script>");
-                        //System.Threading.Thread.Sleep(3000);
-                        //Response.Redirect("Login.aspx");
+                        
                     }
                     catch (Exception ex) { }
                     finally

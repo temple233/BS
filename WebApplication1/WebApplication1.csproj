@@ -72,11 +72,13 @@
     <Content Include="Book_infor.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="packages.config" />
+    <Content Include="Province.xml" />
     <Content Include="Publish.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="webimg\Link.jpg" />
     <Content Include="webimg\Login.png" />
     <Content Include="webimg\Loginp.png" />
+    <Content Include="webimg\Publish_book.png" />
     <Content Include="webimg\search.jpg" />
     <Content Include="webimg\TIM图片20190620123342.png" />
     <Content Include="webimg\TIM图片20190620162637.png" />

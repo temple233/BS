@@ -33,6 +33,12 @@
                     </td></tr></table>
                 </td>      
                 <td><asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/webimg/search.jpg" OnClick="ImageButton1_Click" /></td>      
+                <td>
+                    <asp:ImageButton ID="ImageButton2" runat="server" Height="40px" ImageUrl="~/webimg/Publish_book.png" OnClick="ImageButton2_Click" Width="150px" />
+                </td>
+                <td>
+                    <asp:Label ID="user_id" runat="server" Text=""></asp:Label>
+                </td>
             </tr>
         </table>
         <hr style="clear: both;background-color:red;height: 5px;width:100%;border:none;"/>

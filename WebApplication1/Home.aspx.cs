@@ -10,6 +10,7 @@ namespace WebApplication1
 {
     public partial class Home1 : System.Web.UI.Page{
         String[] Book_id = new String[16];
+        String consumer="316010176";
         protected void Page_Load(object sender, EventArgs e)
         {
             //Label1.Text = Request.QueryString["name"];
@@ -78,6 +79,12 @@ namespace WebApplication1
         protected void Image1_Click(object sender, ImageClickEventArgs e){
             string s_url;
             s_url = "Book_infor.aspx?Book_id=" + Book_id[0];
+            Response.Redirect(s_url);
+        }
+
+        protected void ImageButton2_Click(object sender, ImageClickEventArgs e){
+            string s_url;
+            s_url = "Publish.aspx?user=" + consumer;
             Response.Redirect(s_url);
         }
     }
