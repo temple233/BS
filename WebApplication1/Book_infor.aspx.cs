@@ -9,10 +9,13 @@ using MySql.Data.MySqlClient;
 namespace WebApplication1{
     public partial class Book_infor : System.Web.UI.Page{
         String book_id;
+        String user_id;
         String link_dangdang;
         protected void Page_Load(object sender, EventArgs e){
             //book_id = Request.QueryString["name"];
             book_id = "1000000";
+            user_id = "316010176";
+
             MySqlConnection sqlCon = new MySqlConnection();
             sqlCon.ConnectionString = "server = '127.0.0.1'; uid = 'temple'; pwd = 'temple'; database = 'bs';";//连接字符串
             MySqlCommand cmd = new MySqlCommand();
@@ -40,18 +43,83 @@ namespace WebApplication1{
                 }
             }
             catch (Exception ex) { }
-            finally
-            {
+            finally{
                 reader.Close();
                 sqlCon.Close();
             }
-            
-
-
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e){
             Response.Write("<script language='JavaScript'>window.open('" + link_dangdang + "');</script>");
+        }
+
+        protected void ImageButton3_Click(object sender, ImageClickEventArgs e){
+            if (Number_book.Text.Length == 0){
+                Message.Text = "please input the number of book";
+            }
+            else{
+                String Tran_mode = "send";
+                if (radMode.Checked == true) Tran_mode = "online";
+
+                Message.Text = Tran_mode;
+                MySqlConnection sqlCon = new MySqlConnection();
+                sqlCon.ConnectionString = "server = '127.0.0.1'; uid = 'temple'; pwd = 'temple'; database = 'bs';";//连接字符串
+                MySqlCommand cmd = new MySqlCommand();
+                
+                cmd.Connection = sqlCon;
+                cmd.CommandText = "select * from deal";
+                MySqlDataReader reader = null;
+                String number = "";
+                try{
+                    sqlCon.Open();
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read()){
+                        number = reader[0].ToString();
+                    }
+                }
+                catch (Exception ex) { }
+                finally{
+                    reader.Close();
+                    sqlCon.Close();
+                }
+                number = (int.Parse(number) + 1).ToString();
+                String insert_data = "insert into deal values ('" + number + "','" + user_id + "','" + book_id + "','" + Tran_mode + "','true','false','" + Number.Text + "')";
+                Message.Text = insert_data;
+                MySqlCommand cmd2 = new MySqlCommand(insert_data, sqlCon);
+                try{
+                    sqlCon.Open();
+                    int result = cmd2.ExecuteNonQuery();
+                    if (result == 1){
+                        Message.Text = "insert successfully and will return to login page";
+                    }
+                    else{}
+                }
+                catch (Exception ex) { }
+                finally{
+                    reader.Close();
+                    sqlCon.Close();
+                }
+                
+            }
+        }
+        protected void TxtConpanyName_TextChanged(object sender, EventArgs e)
+        {
+            //你需要处理的业务代码
+            Session["t"] = "tt";
+            this.Number.Focus();//每次触发后重新取得焦点
+        }
+        protected void Timer1_Tick(object sender, EventArgs e){
+            
+            if (Session["t"] == "")
+            {
+                Session["t"] = "ttt";
+                Message.Text = "0000000";
+            }
+            else if(Session["t"] == "ttt")
+            {
+                Session["t"] = "";
+                Message.Text = "111111";
+            }
         }
     }
 }

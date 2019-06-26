@@ -23,8 +23,8 @@
                 </td>
                 <td>
                     <table border="2" bordercolor="red" Width="400px" Height="50px"><tr><td>
-                           <asp:TextBox ID="SearchText" runat="server" Height="30px" Width="300px"></asp:TextBox>
-                           <asp:DropDownList ID="DropDownList1" runat="server" Height="40px" Width="80px">
+                           <asp:TextBox ID="SearchText" runat="server" Height="40px" Width="260px"></asp:TextBox>
+                           <asp:DropDownList ID="DropDownList1" runat="server" Height="46px" Width="120px" Font-Size="X-Large">
                                 <asp:ListItem Value = "1" Text = "Study">Study</asp:ListItem>
                                 <asp:ListItem Value = "2" Text =  "Teaching">Teaching</asp:ListItem>
                                 <asp:ListItem Value = "3" Text = "Amusement">Amusement</asp:ListItem>
