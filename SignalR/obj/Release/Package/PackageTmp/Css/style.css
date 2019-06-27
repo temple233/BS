@@ -1,0 +1,115 @@
+﻿body,ul,li,h1,p {
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    font-size:12px;
+    font-family:微软雅黑;
+}
+
+.bg {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index:-9999
+}
+.wrap {
+    height: 100%;
+    margin: 0 auto;
+    width: 800px;
+    z-index:999
+}
+.user {
+    float: left;
+    height: 100%;
+    width: 280px;
+}
+.user-head {
+    border-radius: 6px 6px 0 0;
+    height: 45px;
+    line-height:45px;
+    background: #222;
+}
+.user-head h1 {
+    color:#fff;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+.user-list {
+    border:solid 1px #555;
+    border-top:none;
+    height:450px;
+    background:#fff;
+    overflow-y:auto;
+}
+.user-list li {
+    display: block;
+    border-bottom: solid 1px #eee;
+    padding:10px 20px;
+    font-size:15px;
+}
+.user-end {
+    border-radius: 0 0 6px 6px;
+    height: 45px;
+    line-height:45px;
+    background: #222;
+}
+.user-end h1 {
+    color:#fff;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+
+
+.chat {
+    float: left;
+    height: 100%;
+    margin-left: 20px;
+    position: relative;
+    width: 500px;
+}
+.chat-main {
+    border:solid 1px #555;
+    border-top:none;
+    height:450px;
+    background:#fff;
+}
+.chat-list {
+    border-top:none;
+    height:300px;
+    overflow-y:scroll;
+}
+.chat-list li {
+    display: block;
+    padding: 0px 20px;
+}
+
+.chat-list li p {
+    line-height:23px;
+}
+.chat-list .other .chat-name{
+    color:blue;
+}
+.chat-list .owner .chat-name{
+    color:green;
+}
+.chat-content {
+    text-indent:1em;
+}
+.hr {
+    height:22px;
+    background:#eee;
+}
+.msg-content {
+    height:100px;
+    width:480px;
+    border:solid 1px #eee;
+    padding:5px;
+}
+.chat .user-end h1{
+    cursor:pointer;
+}
