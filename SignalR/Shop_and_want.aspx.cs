@@ -24,8 +24,10 @@ namespace SignalR {
     }
 
     public partial class Shop_and_want : System.Web.UI.Page {
-        String user = "316010176";
+        String user;
         protected void Page_Load(object sender, EventArgs e) {
+            user = Request.QueryString["id"];
+            user_id.Text = user;
             if (!IsPostBack) {
                 BindProvince();
             }
@@ -211,10 +213,42 @@ namespace SignalR {
                 finally {
                     sqlCon.Close();
                 }
-                string s_url;
+                /*string s_url;
                 s_url = "Shop_and_want.aspx?user=" + user;
-                Response.Redirect(s_url);
+                Response.Redirect(s_url);*/
+                Want_bind();
             }
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //设置第二列的列宽
+            e.Row.Cells[0].Attributes.Add("style", "width:250px;word-wrap : break-word ;word-break : normal ;");
+            e.Row.Cells[1].Width = 400;
+
+            //设置奇数行和偶数行的颜色
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.RowIndex % 2 == 1)
+                {
+                    //设置偶数行背景颜色
+                    //e.Row.BackColor = System.Drawing.Color.SeaShell;
+                    e.Row.BackColor = System.Drawing.Color.Beige;
+                }
+
+                //鼠标滑过背景颜色
+                e.Row.Attributes.Add("onMouseOver", "Color=this.style.backgroundColor;this.style.backgroundColor='#FFF000';this.style.cursor='hand'");
+                e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor=Color;");
+            }
+
+
+        }
+
+        protected void ImageButton4_Click(object sender, ImageClickEventArgs e)
+        {
+            string s_url;
+            s_url = "Home.aspx?id=" + user;
+            Response.Redirect(s_url);
         }
     }
 }

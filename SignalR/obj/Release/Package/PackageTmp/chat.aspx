@@ -23,13 +23,9 @@
         $(function () {
             //prompt层
             userID = new Date().getTime().toString(36);
-            layer.prompt({
-                title: '输入您的聊天昵称，并确认',
-                formType: 0 
-            }, function (pass) {
-                initChat(userID, pass);
-                layer.msg('您的昵称设置为：' + pass);
-            });
+            var pa = <%=s()%>;
+            initChat(userID, pa);
+            layer.msg('account：' + pa);
         });
         
         //初始化聊天
@@ -73,6 +69,8 @@
                 //点击按钮，发送聊天内容
                 $('#send').click(function () {
                     var content = $('.msg-content').val();
+                    if (content == '')
+                        return;
                     chatHub.server.sendMessage(message(userID, nickName, content));
                     $('.msg-content').val('')
                 });
@@ -80,6 +78,8 @@
                     var keycode = (event.keyCode ? event.keyCode : event.which);
                     if (keycode == '13') {
                         var content = $('.msg-content').val();
+                        if (content == '')
+                            return;
                         chatHub.server.sendMessage(message(userID, nickName, content));
                         $('.msg-content').val('')
                     }
@@ -106,14 +106,51 @@
 <body>
     <form id="form1" runat="server">
         <!--背景-->
-        <div>
-            <img class="bg" src="Images/bg.jpg" />
-        </div>
+
+        <table>
+            <tr>
+                <td Width="100px"></td>
+                <td><asp:Image ID="Search" runat="server" ImageUrl="~/webimg/TIM图片20190620162637.png" /></td>
+                <td class="auto-style1">
+                </td>
+                <td>
+                    <table border="2" bordercolor="red" Width="400px" Height="50px"><tr><td>
+                           <asp:TextBox ID="SearchText" runat="server" Height="40px" Width="260px"></asp:TextBox>
+                           <asp:DropDownList ID="DropDownList1" runat="server" Height="46px" Width="120px" Font-Size="X-Large">
+                                <asp:ListItem Value = "1" Text = "Study">Study</asp:ListItem>
+                                <asp:ListItem Value = "2" Text =  "Teaching">Teaching</asp:ListItem>
+                                <asp:ListItem Value = "3" Text = "Amusement">Amusement</asp:ListItem>
+                                <asp:ListItem Value = "4" Text = "Sports">Sports</asp:ListItem>
+                           </asp:DropDownList>
+                    </td></tr></table>
+                </td>      
+                <td><asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/webimg/search.jpg"  Height="36px" /></td>      
+                <td width="20px"></td>
+                <td>
+                    <asp:ImageButton ID="ImageButton2" runat="server" Height="36px" ImageUrl="~/webimg/Publish_book.png"  Width="135px" /></td>
+                <td width="20px"></td>
+                <td>
+                    <asp:Label ID="user_id" runat="server" BackColor="Red" Font-Bold="True" Font-Size="X-Large" ForeColor="White" Height="36px"></asp:Label>
+                </td>
+                <td width="20px"></td>
+                <td>
+
+                    <asp:ImageButton ID="ImageButton3" runat="server" Height="50px" ImageUrl="~/webimg/want.jpg"  />
+
+                </td>
+                <td width="20px"></td>
+                <td>
+                    <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/webimg/main.jpg" Height="60px" OnClick="ImageButton4_Click"  />
+                </td>
+            </tr>
+        </table>
+        <hr style="clear: both;background-color:red;height: 5px;width:100%;border:none;"/>
+  
         <div class="wrap">
             <div class="user">
                 <br />
                 <div class="user-head">
-                    <h1 class="">会话</h1>
+                    <h1 class="">Account</h1>
                 </div>
                 <ul class="user-list">
                 </ul>
@@ -124,25 +161,17 @@
             <div class="chat">
                 <br />
                 <div class="user-head">
-                    <h1>聊天窗口</h1>
+                    <h1>Communication</h1>
                 </div>
                 <div class="chat-main">
                     <ul class="chat-list">
-                        <li class="other">
-                            <p class="chat-name">张三(2016-04-17)：</p>
-                            <p class="chat-content">没什么好说的，再见！！</p>
-                        </li>
-                        <li class="owner">
-                            <p class="chat-name">杨良斌(2016-04-17)：</p>
-                            <p class="chat-content">没什么好说的，再见！！</p>
-                        </li>
                     </ul>
                     <div class="hr"></div>
                     <textarea class="msg-content"></textarea><br />
                     <%--<input type="button" id="btnSend" value="发送" />--%>
                 </div>
                 <div class="user-end">
-                    <h1 id="send">发送消息</h1>
+                    <h1 id="send">Send</h1>
                 </div>
             </div>
         </div>

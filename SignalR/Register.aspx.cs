@@ -134,7 +134,7 @@ namespace WebApplication1{
                         //执行查询，并将结果返回给读取器
                         int result = cmd2.ExecuteNonQuery();
                         if (result == 1){
-                            Message.Text = "insert successfully and will return to login page";
+                            Message.Text = "Account:" + number + "create successfully and will return to login page";
                             
                         }
                         else{

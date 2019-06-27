@@ -12,10 +12,11 @@ namespace WebApplication1{
         String user_id;
         String link_dangdang;
         protected void Page_Load(object sender, EventArgs e){
-            //book_id = Request.QueryString["name"];
-            book_id = "1000000";
-            user_id = "316010176";
+            book_id = Request.QueryString["Book_id"];
 
+            //book_id = "1000002";
+            user_id = Request.QueryString["User"];
+            user.Text = user_id;
             MySqlConnection sqlCon = new MySqlConnection();
             sqlCon.ConnectionString = "server = '127.0.0.1'; uid = 'temple'; pwd = 'temple'; database = 'bs';";//连接字符串
             MySqlCommand cmd = new MySqlCommand();
@@ -90,7 +91,7 @@ namespace WebApplication1{
                     sqlCon.Open();
                     int result = cmd2.ExecuteNonQuery();
                     if (result == 1){
-                        Message.Text = "insert successfully and will return to login page";
+                        Message.Text = "This book has been added to your Shopping Cart";
                     }
                     else{}
                 }
@@ -106,6 +107,13 @@ namespace WebApplication1{
         protected void ImageButton4_Click(object sender, ImageClickEventArgs e){
             string s_url;
             s_url = "chat.aspx?name=" + user_id+"&book="+book_id;
+            Response.Redirect(s_url);
+        }
+
+        protected void ImageButton7_Click(object sender, ImageClickEventArgs e)
+        {
+            string s_url;
+            s_url = "Home.aspx?id=" + user_id;
             Response.Redirect(s_url);
         }
     }

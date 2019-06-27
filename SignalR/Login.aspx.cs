@@ -45,12 +45,12 @@ namespace SignalR
                 int sign_password = 1;
                 int right = 0;
                 while (reader.Read()){
-                    String name = reader[2].ToString();
+                    String name = reader[0].ToString();
                     String password = reader[1].ToString();
                     if (name == NameText.Text && password == PasswordText.Text){
                         Name_error.Text += "login";
                         string s_url;
-                        s_url = "Home.aspx?name=" + name;
+                        s_url = "Home.aspx?id=" + name;
                         Response.Redirect(s_url);
                         right = 1;
                         sign_name = 1;
@@ -88,43 +88,7 @@ namespace SignalR
             s_url = "Register.aspx";
             Response.Redirect(s_url);
         }
-
-        /* protected void Button1_Click(object sender, EventArgs e){
-
-             Response.Write("<script language='javascript'>window.open('http://www.hao123.com')</script>");
-
-
-             Label1.Text = "my0";
-             MySqlConnection sqlCon = new MySqlConnection();
-             sqlCon.ConnectionString = "server = '127.0.0.1'; uid = 'temple'; pwd = 'temple'; database = 'bs';";//连接字符串
-             MySqlCommand cmd = new MySqlCommand();
-             cmd.Connection = sqlCon;
-             cmd.CommandText = "select * from user";
-             MySqlDataReader reader = null;
-             try
-             {
-                 Label2.Text = "";
-                 //打开连接
-                 sqlCon.Open();
-                 //执行查询，并将结果返回给读取器
-                 reader = cmd.ExecuteReader();
-                  while (reader.Read())
-                  {
-                     Label2.Text += "ID=" + reader[0].ToString() + " , Name=" + reader[1].ToString() ;
-                  }
-                // Label2.Text = reader[0].ToString();
-
-             }
-             catch (Exception ex) { }
-             finally
-             {
-                 reader.Close();
-                 sqlCon.Close();
-             }
-
-
-         }
-         */
+        
 
     }
 }

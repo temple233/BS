@@ -30,7 +30,7 @@
     border-radius: 6px 6px 0 0;
     height: 45px;
     line-height:45px;
-    background: #222;
+    background: #ff0000;
 }
 .user-head h1 {
     color:#fff;
@@ -55,7 +55,7 @@
     border-radius: 0 0 6px 6px;
     height: 45px;
     line-height:45px;
-    background: #222;
+    background: #ff0000;
 }
 .user-end h1 {
     color:#fff;

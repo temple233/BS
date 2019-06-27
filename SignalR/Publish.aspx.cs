@@ -11,13 +11,13 @@ namespace WebApplication1{
     public partial class Publish : System.Web.UI.Page{
         String user;
         protected void Page_Load(object sender, EventArgs e){
-            user = "316010176";
+            user = Request.QueryString["user"];
+            user_id.Text = user;
         }
 
         protected void Pub_Click(object sender, EventArgs e){
             //Message.Text = FileUpload1.PostedFile.FileName;
-            String path = FileUpload1.PostedFile.FileName;
-            path = path.Replace('\\', '/');
+            String path = FileUpload1.FileName;
             String link = "http://search.dangdang.com/?medium=01&key4=" + ISBN.Text;
             if (NameText.Text.Length == 0) { Message.Text = "Please input the name of the book"; }
             else if (OriginalText.Text.Length == 0) { Message.Text = "Please input the origianl price of the book"; }
@@ -73,6 +73,13 @@ namespace WebApplication1{
         protected void Button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ImageButton4_Click(object sender, ImageClickEventArgs e)
+        {
+            string s_url;
+            s_url = "Home.aspx?id=" + user;
+            Response.Redirect(s_url);
         }
     }
 }

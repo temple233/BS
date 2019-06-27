@@ -98,10 +98,12 @@
     <Content Include="Publish.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Shop_and_want.aspx" />
+    <Content Include="webimg\chat.jpg" />
     <Content Include="webimg\Contact.jpg" />
     <Content Include="webimg\Link.jpg" />
     <Content Include="webimg\Login.png" />
     <Content Include="webimg\Loginp.png" />
+    <Content Include="webimg\main.jpg" />
     <Content Include="webimg\Publish_book.png" />
     <Content Include="webimg\search.jpg" />
     <Content Include="webimg\Shop.jpg" />

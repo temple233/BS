@@ -111,7 +111,8 @@
             <tr>
                 <td Width="100px"></td>
                 <td><asp:Image ID="Search" runat="server" ImageUrl="~/webimg/TIM图片20190620162637.png" /></td>
-                <td Width="100px"></td>
+                <td class="auto-style1">
+                </td>
                 <td>
                     <table border="2" bordercolor="red" Width="400px" Height="50px"><tr><td>
                            <asp:TextBox ID="SearchText" runat="server" Height="40px" Width="260px"></asp:TextBox>
@@ -122,14 +123,25 @@
                                 <asp:ListItem Value = "4" Text = "Sports">Sports</asp:ListItem>
                            </asp:DropDownList>
                     </td></tr></table>
-                </td>    
-                <td><asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/webimg/search.jpg"  /></td>      
- 
-                <td class="auto-style1">
-                </td>   
+                </td>      
+                <td><asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/webimg/search.jpg"  Height="36px" /></td>      
+                <td width="20px"></td>
+                <td>
+                    <asp:ImageButton ID="ImageButton2" runat="server" Height="36px" ImageUrl="~/webimg/Publish_book.png"  Width="135px" /></td>
+                <td width="20px"></td>
+                <td>
+                    <asp:Label ID="user_id" runat="server" BackColor="Red" Font-Bold="True" Font-Size="X-Large" ForeColor="White" Height="36px"></asp:Label>
+                </td>
+                <td width="20px"></td>
                 <td>
 
-                    &nbsp;</td> 
+                    <asp:ImageButton ID="ImageButton3" runat="server" Height="50px" ImageUrl="~/webimg/want.jpg"  />
+
+                </td>
+                <td width="20px"></td>
+                <td>
+                    <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/webimg/main.jpg" Height="60px" OnClick="ImageButton4_Click"  />
+                </td>
             </tr>
         </table>
         <hr style="clear: both;background-color:red;height: 5px;width:100%;border:none;"/>
